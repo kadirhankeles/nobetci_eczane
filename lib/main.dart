@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:nobetci_eczane/provider/eczane_provider.dart';
 import 'package:nobetci_eczane/screens/search_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<EczaneProvider>(create: (_)=>EczaneProvider())
+  ], builder: (context, child) => const MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +19,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Responsive Sizer Example',
           theme: ThemeData(
             primarySwatch: Colors.blue,

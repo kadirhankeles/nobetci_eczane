@@ -11,6 +11,10 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  
+  final sehirCon = new TextEditingController();
+  final ilceCon = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
         margin: AppConstant.containerMargin,
         height: 50.h,
         width: double.infinity,
-        decoration: AppConstant.searchDeco,
+       
         child: Padding(
           padding:  EdgeInsets.only(left: 15.w, right: 15.w),
           child: Column(
@@ -32,6 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(0),
                   child: TextField(
+                    controller: sehirCon,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 1.5.h),
                       border: OutlineInputBorder(),
@@ -47,6 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(0),
                   child: TextField(
+                    controller: ilceCon,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 1.5.h),
                       border: OutlineInputBorder(),
@@ -55,7 +61,8 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
                 ),
               ),
-              SearchButton(),
+              SizedBox(height: 4.h,),
+              SearchButton(sehirCon: sehirCon, ilceCon: ilceCon,),
             ],
           ),
         ),
