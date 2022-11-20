@@ -14,6 +14,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  EczaneProvider? eczProvider;
+  @override
+  void initState() {
+    // TODO: implement initState
+    eczProvider = Provider.of<EczaneProvider>(context, listen: false);
+    eczProvider?.getData(context);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 100.h,
               width: double.infinity,
               child: value.isLoading ? ListView.builder(
-                itemCount: 12,
+                itemCount: value.response.result?.length,
                 itemBuilder: (context, index) {
                   return EczaneCard(
-                    eczaneAdi: '${value.response.result![index].name} Eczanesi',
-                    eczaneSemt: '${value.response.result![index].dist}',
+                    eczaneAdi: '${value.response.result?[index].name} Eczanesi',
+                    eczaneSemt: '${value.response.result?[index].dist}',
                     eczaneAdres:
-                        '${value.response.result![index].address}',
+                        '${value.response.result?[index].address}',
                         
                   );
                 },
