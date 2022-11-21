@@ -6,9 +6,9 @@ class EczaneProvider with ChangeNotifier{
   EczaneList response = EczaneList();
   bool isLoading=false;
 
-  getData(context) async{
+  getData(context,String sehir, String ilce) async{
     isLoading=true;
-    response = (await getEczaneData(context))!;
+    response = (await getEczaneData(context, sehir, ilce))!;
     isLoading = false;
     notifyListeners();
   }

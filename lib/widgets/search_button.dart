@@ -29,7 +29,7 @@ class _SearchButtonState extends State<SearchButton> {
            ilce = widget.ilceCon.text;
            print("${widget.sehirCon.text}");
            print("${widget.ilceCon.text}");
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen(),));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen(sehir: sehir, ilce: ilce,),));
       }, child: Text("ARA")),
     );
   }

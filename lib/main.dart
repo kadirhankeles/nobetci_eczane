@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:nobetci_eczane/provider/eczane_provider.dart';
+import 'package:nobetci_eczane/provider/sehir_provider.dart';
 import 'package:nobetci_eczane/screens/search_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<EczaneProvider>(create: (_)=>EczaneProvider())
+    ChangeNotifierProvider<EczaneProvider>(create: (_)=>EczaneProvider()),
+    ChangeNotifierProvider<SehirProvider>(create: (_)=>SehirProvider())
+
   ], builder: (context, child) => const MyApp(),));
 }
 
