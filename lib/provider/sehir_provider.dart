@@ -8,7 +8,8 @@ class SehirProvider with ChangeNotifier{
   List<SehirListe> ?response;
   bool isLoading=false;
     String deger = "Adana";
-    String degerIlce="Merkez";
+    String degerIlce="Aladağ";
+    int secilenSehir=0;
 
 
   getData(context) async{
@@ -27,4 +28,19 @@ class SehirProvider with ChangeNotifier{
 degerIlce=ilce;
 notifyListeners();
   }
+
+ indexBul(String deger){
+    for(int i=0;i<response!.length;i++)
+    {
+           if(response![i].ilAdi==deger)
+           {
+             secilenSehir=i;
+             degerIlce=response![i].ilceler![0].ilceAdi!;
+             print(degerIlce);
+             notifyListeners();
+           }
+
+    }
+  }
+ 
 }

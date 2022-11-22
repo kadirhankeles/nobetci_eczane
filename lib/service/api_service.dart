@@ -10,8 +10,8 @@ import 'package:nobetci_eczane/model/sehir_liste.dart';
 
 Future<EczaneList?> getEczaneData(context, String sehir, String ilce) async{
   Map<String, String> requestHeaders = {
-      // 'authorization': 'apikey 5vEljyf234nyUVCcLB853n:12ifu3NTORioUSLiBrxZa2',
-       'Content-type': 'application/json',
+      'authorization': 'apikey 5vEljyf234nyUVCcLB853n:12ifu3NTORioUSLiBrxZa2',
+      'Content-type': 'application/json',
        
      };
   EczaneList eczaneResponse;

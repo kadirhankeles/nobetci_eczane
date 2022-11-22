@@ -4,9 +4,9 @@ import 'package:nobetci_eczane/screens/home_screen.dart';
 import 'package:nobetci_eczane/screens/search_screen.dart';
 
 class SearchButton extends StatefulWidget {
-  final TextEditingController sehirCon;
-  final TextEditingController ilceCon;
-   SearchButton( {super.key, required this.sehirCon, required this.ilceCon});
+  final String gelenSehir;
+  final String gelenIlce;
+   SearchButton( {super.key, required this.gelenSehir, required this.gelenIlce,});
 
   @override
   State<SearchButton> createState() => _SearchButtonState();
@@ -25,10 +25,9 @@ class _SearchButtonState extends State<SearchButton> {
         style: AppConstant.searchButton,
         onPressed: () {
          
-           sehir = widget.sehirCon.text;
-           ilce = widget.ilceCon.text;
-           print("${widget.sehirCon.text}");
-           print("${widget.ilceCon.text}");
+           sehir = widget.gelenSehir;
+           ilce = widget.gelenIlce;
+           
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen(sehir: sehir, ilce: ilce,),));
       }, child: Text("ARA")),
     );

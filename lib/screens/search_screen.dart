@@ -15,9 +15,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final sehirCon = new TextEditingController();
-  final ilceCon = new TextEditingController();
+  
   SehirProvider? sehirProvider;
+  final int sehirIndex = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -27,13 +27,12 @@ class _SearchScreenState extends State<SearchScreen> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer(
         builder: (context, SehirProvider value, child) {
-          
-
           return Container(
             margin: AppConstant.containerMargin,
             height: 50.h,
@@ -50,51 +49,55 @@ class _SearchScreenState extends State<SearchScreen> {
                   SizedBox(
                     height: 6.h,
                   ),
-                  value.isLoading==false?
-                  Container(
-                    width: double.infinity,
-                    height: 5.h,
-                    child: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: DropdownButton(
-                          value: value.deger,
-                          items:value.response!.map((value) {
-                            return DropdownMenuItem(
-                              value: value!.ilAdi,
-                              child: Text(value!.ilAdi.toString()),
-                            );
-                          }).toList(),
-                          onChanged: (deger) {
-                            value.sehirDegis(deger.toString());
-                          },
-                        )),
-                  ):Container(),
-                  Container(
-                    margin: EdgeInsets.only(top: 3.h),
-                    width: double.infinity,
-                    height: 5.h,
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: DropdownButton(
-                          value: value.degerIlce,
-                          items:value.response![2].ilceler!.map((value) {
-                            return DropdownMenuItem(
-                              value: value.ilceAdi,
-                              child: Text(value.ilceAdi.toString()),
-                            );
-                          }).toList(),
-                          onChanged: (deger) {
-                            value.ilceDegis(deger.toString());
-                          },
+                  value.isLoading == false
+                      ? Container(
+                          width: double.infinity,
+                          height: 5.h,
+                          child: Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: DropdownButton(
+                                value: value.deger,
+                                items: value.response!.map((aa) {
+                                  return DropdownMenuItem(
+                                    value: aa!.ilAdi,
+                                    child: Text(aa!.ilAdi.toString()),
+                                  );
+                                }).toList(),
+                                onChanged: (deger) {
+                                  print(value.indexBul(deger.toString()));
+                                  value.sehirDegis(deger.toString());
+                                },
+                              )),
                         )
-                    ),
-                  ),
+                      : Container(),
+                  value.isLoading == false
+                      ? Container(
+                          margin: EdgeInsets.only(top: 3.h),
+                          width: double.infinity,
+                          height: 5.h,
+                          child: Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: DropdownButton(
+                                value: value.degerIlce,
+                                items: value
+                                    .response![value.secilenSehir].ilceler!
+                                    .map((value) {
+                                  return DropdownMenuItem(
+                                    value: value.ilceAdi,
+                                    child: Text(value.ilceAdi.toString()),
+                                  );
+                                }).toList(),
+                                onChanged: (deger) {
+                                  value.ilceDegis(deger.toString());
+                                },
+                              )),
+                        )
+                      : Container(),
                   SizedBox(
                     height: 4.h,
                   ),
-                  SearchButton(
-                    sehirCon: sehirCon,
-                    ilceCon: ilceCon,
+                  SearchButton(gelenSehir: '${value.deger}', gelenIlce: '${value.degerIlce}',
+                    
                   ),
                 ],
               ),
